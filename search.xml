@@ -40,7 +40,7 @@
 <li>无法做CDN加速。未备案域名服务器，无法使用国内的cnd加速服务。</li>
 </ol>
 <p>最终放弃使用github的pages服务<br>那么有的读者可能会想到使用coding，这里我告诉你答案仍然是不行！！最主要原因是，使用了coding后绑定了自定义域名，在每天第一次访问自己的域名到自己的博客之间，coding会插入一个广告跳转页面，非常之恶心，虽然说底部加入一个外链指向coding，然后申请提交后可取消广告跳转页面，但是谁能保证以后会不会收费，而且莫名其妙的带了个外链，反正心里不爽<br>好了说到这里，就该介绍我们的netlify服务了。官网：<a href="https://www.netlify.com" target="_blank" rel="noopener">https://www.netlify.com</a><br>netlify服务避免了以上所有缺点，而且结合github分支部署已达到更快捷的部署体验。下面是我画的一个部署架构图，可以大致的先看下部署架构图。</p>
-<img src="/2020/03/05/hexo-learn/%E9%83%A8%E7%BD%B2%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" class="">
+<img src="/2020/03/05/hexo-learn.htm/03/05/hexo-learn/%E9%83%A8%E7%BD%B2%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" class>
 
 <h2 id="为什么要多分支"><a href="#为什么要多分支" class="headerlink" title="为什么要多分支"></a>为什么要多分支</h2><p>这里可能有点绕，因为我们编辑发表文章，生成静态部署文件是用的项目代码，而真正发布的文章是项目给我们生成的 public 下的静态文件，所以我们实际上是有两份代码需要托管的，而且这两份代码实际上都是一个项目产出的，所以放到一个git仓库下更合适，然后使用git的分支隔离特性来托管我们的两份代码才是真正的hexo的正确使用方式。<br>通过上面的图可以看到我的仓库上是有两个分支的，一个是source分支，是用来存放我们编辑的源码，另一个是master分支是用来放我们要部署的代码的，经过以上我们的介绍，实际上我们发现我们要把我们的源代码托管到github上，还有我们编译好的静态文件也要托管到github上，然后我们的netlify服务实际上是经过webhook钩子，勾住了github上某个分支（这里是master分支），当有推送之类的更新操作时，我们的netlify会自动拉去我们仓库中的文件完成自动部署。</p>
 <h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><p>首先把我们的本地项目代码推送到github仓库</p>
@@ -54,10 +54,10 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>之后再次执行 <code>hexo d</code> 即可,执行完毕后进入我们的github仓库中会发现多出了一个分支run-page，正是我们在配置文件中设置的分支，这里面就是放的我们要部署的文件。</p>
 <p>接下来我们进入<a href="https://www.netlify.com/" target="_blank" rel="noopener">netlify官网</a>,然后点击右上角的 Login<br>选择使用github账户授权登录，登录完成后我们就进入到了我们的控制台<br>然后我们选择右上角的 <code>New site from Git</code> 按钮，然后选择 github</p>
-<img src="/2020/03/05/hexo-learn/%E9%80%89%E6%8B%A9github.png" class="">
+<img src="/2020/03/05/hexo-learn.htm/03/05/hexo-learn/%E9%80%89%E6%8B%A9github.png" class>
 <p>然后选择要部署的项目仓库和分支</p>
-<img src="/2020/03/05/hexo-learn/%E9%80%89%E6%8B%A9%E8%A6%81%E9%83%A8%E7%BD%B2%E7%9A%84%E4%BB%93%E5%BA%93%E5%92%8C%E5%88%86%E6%94%AF.png" class="">
-<p>之后点 <code>Deploy site</code> 按钮提交部署<br>如果自己有域名，下一步还可以进行域名绑定，申请https，部署成功后会自动进行cdn加速的。<br>netlify生成的网址，字符很长，自己可以修改site的名称<br>]]></content>
+<img src="/2020/03/05/hexo-learn.htm/03/05/hexo-learn/%E9%80%89%E6%8B%A9%E8%A6%81%E9%83%A8%E7%BD%B2%E7%9A%84%E4%BB%93%E5%BA%93%E5%92%8C%E5%88%86%E6%94%AF.png" class>
+<p>之后点 <code>Deploy site</code> 按钮提交部署<br>如果自己有域名，下一步还可以进行域名绑定，申请https，部署成功后会自动进行cdn加速的。<br>netlify生成的网址，字符很长，自己可以修改site的名称<br></p>]]></content>
       <categories>
         <category>工具</category>
       </categories>
@@ -71,8 +71,10 @@
     <title>家乡的晚霞</title>
     <url>/2020/02/23/img-test.html</url>
     <content><![CDATA[<p><strong>The scenery of my hometown</strong></p>
-<p><img src="HomeTown_scenery.jpg" alt="老家"></p>
-<p><img src="HomeTown_scenery_2.jpg" alt="新家"></p>
+<img src="/2020/02/23/img-test.htm/02/23/img-test/HomeTown_scenery.jpg" class title="老家">
+
+<img src="/2020/02/23/img-test.htm/02/23/img-test/HomeTown_scenery_2.jpg" class title="新家">
+
 <p><strong><em>These photos were taken by wyx</em></strong></p>
 ]]></content>
       <categories>
