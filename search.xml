@@ -32,17 +32,22 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean      <span class="comment">#清理旧文件、缓存</span></span><br><span class="line">hexo generate   <span class="comment">#生成静态文件</span></span><br><span class="line">hexo server     <span class="comment">#开启服务</span></span><br></pre></td></tr></table></figure>
 <p>服务器预览地址：<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></p>
 <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="什么是部署"><a href="#什么是部署" class="headerlink" title="什么是部署"></a>什么是部署</h2><p>当我们使用 <code>hexo g</code> 和 <code>hexo s</code> 命令生成并开启服务后，我们本地访问的测试域名实际是指向了我们当前目录下的 public 目录，也就是说 <code>hexo g</code> 命令生成的静态文件就是 public 目录下的文件，部署的过程就是将这个 public 目录下的文件放到我们的服务器上这样就完成了部署。</p>
-<h2 id="为什么选择netlify服务部署"><a href="#为什么选择netlify服务部署" class="headerlink" title="为什么选择netlify服务部署"></a>为什么选择netlify服务部署</h2><p>好了，介绍完了上面我们知道我们接下来是要弄到可靠的服务器来吧我们的前端代码方上去，那么我们选什么服务器呢？<br>由于我们是纯前端化的博客，无需运行什么后端环境，所以购买服务器就不适合我们了，而且也违背了我们的初衷（买服务器只用来跑一个静态页面，血坑啊，而且还要涉及到备案等一系列手续，黄花菜都凉了）。<br>那用过github的读者都知道github有个pages服务，是否可以用呢？答案是不行！原因有一下几点：</p>
+<h2 id="为什么选择netlify服务部署"><a href="#为什么选择netlify服务部署" class="headerlink" title="为什么选择netlify服务部署"></a>为什么选择netlify服务部署</h2><p>好了，介绍完了上面我们知道我们接下来是要弄到可靠的服务器来吧我们的前端代码方上去，那么我们选什么服务器呢？</p>
+<p>由于我们是纯前端化的博客，无需运行什么后端环境，所以购买服务器就不适合我们了，而且也违背了我们的初衷（买服务器只用来跑一个静态页面，血坑啊，而且还要涉及到备案等一系列手续，黄花菜都凉了）。<br>那用过github的读者都知道github有个pages服务，是否可以用呢？答案是不行！原因有一下几点：</p>
 <ol>
 <li>github虽然没有被墙，但是那个访问速度可想而知非常的慢，对国内访问的用户来说体验极差。</li>
 <li>百度无法抓取，众所周知国内用百度的还是多，如果你写的文章，无法被百度抓取收录，那还是有点坑的。</li>
 <li>配置繁琐，使用不友好。https证书配置这一项就麻烦的要死。</li>
 <li>无法做CDN加速。未备案域名服务器，无法使用国内的cnd加速服务。</li>
 </ol>
-<p>最终放弃使用github的pages服务<br>那么有的读者可能会想到使用coding，这里我告诉你答案仍然是不行！！最主要原因是，使用了coding后绑定了自定义域名，在每天第一次访问自己的域名到自己的博客之间，coding会插入一个广告跳转页面，非常之恶心，虽然说底部加入一个外链指向coding，然后申请提交后可取消广告跳转页面，但是谁能保证以后会不会收费，而且莫名其妙的带了个外链，反正心里不爽<br>好了说到这里，就该介绍我们的netlify服务了。官网：<a href="https://www.netlify.com" target="_blank" rel="noopener">https://www.netlify.com</a><br>netlify服务避免了以上所有缺点，而且结合github分支部署已达到更快捷的部署体验。下面是我画的一个部署架构图，可以大致的先看下部署架构图。</p>
+<p>最终放弃使用github的pages服务</p>
+<p>那么有的读者可能会想到使用coding，这里我告诉你答案仍然是不行！！最主要原因是，使用了coding后绑定了自定义域名，在每天第一次访问自己的域名到自己的博客之间，coding会插入一个广告跳转页面，非常之恶心，虽然说底部加入一个外链指向coding，然后申请提交后可取消广告跳转页面，但是谁能保证以后会不会收费，而且莫名其妙的带了个外链，反正心里不爽。</p>
+<p>好了说到这里，就该介绍我们的netlify服务了。官网：<a href="https://www.netlify.com" target="_blank" rel="noopener">https://www.netlify.com</a></p>
+<p>netlify服务避免了以上所有缺点，而且结合github分支部署已达到更快捷的部署体验。下面是我画的一个部署架构图，可以大致的先看下部署架构图。</p>
 <img src="/2020/03/05/hexo-learn/%E9%83%A8%E7%BD%B2%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" class>
 
-<h2 id="为什么要多分支"><a href="#为什么要多分支" class="headerlink" title="为什么要多分支"></a>为什么要多分支</h2><p>这里可能有点绕，因为我们编辑发表文章，生成静态部署文件是用的项目代码，而真正发布的文章是项目给我们生成的 public 下的静态文件，所以我们实际上是有两份代码需要托管的，而且这两份代码实际上都是一个项目产出的，所以放到一个git仓库下更合适，然后使用git的分支隔离特性来托管我们的两份代码才是真正的hexo的正确使用方式。<br>通过上面的图可以看到我的仓库上是有两个分支的，一个是source分支，是用来存放我们编辑的源码，另一个是master分支是用来放我们要部署的代码的，经过以上我们的介绍，实际上我们发现我们要把我们的源代码托管到github上，还有我们编译好的静态文件也要托管到github上，然后我们的netlify服务实际上是经过webhook钩子，勾住了github上某个分支（这里是master分支），当有推送之类的更新操作时，我们的netlify会自动拉去我们仓库中的文件完成自动部署。</p>
+<h2 id="为什么要多分支"><a href="#为什么要多分支" class="headerlink" title="为什么要多分支"></a>为什么要多分支</h2><p>这里可能有点绕，因为我们编辑发表文章，生成静态部署文件是用的项目代码，而真正发布的文章是项目给我们生成的 public 下的静态文件，所以我们实际上是有两份代码需要托管的，而且这两份代码实际上都是一个项目产出的，所以放到一个git仓库下更合适，然后使用git的分支隔离特性来托管我们的两份代码才是真正的hexo的正确使用方式。</p>
+<p>通过上面的图可以看到我的仓库上是有两个分支的，一个是source分支，是用来存放我们编辑的源码，另一个是master分支是用来放我们要部署的代码的，经过以上我们的介绍，实际上我们发现我们要把我们的源代码托管到github上，还有我们编译好的静态文件也要托管到github上，然后我们的netlify服务实际上是经过webhook钩子，勾住了github上某个分支（这里是master分支），当有推送之类的更新操作时，我们的netlify会自动拉去我们仓库中的文件完成自动部署。</p>
 <h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><p>首先把我们的本地项目代码推送到github仓库</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init    <span class="comment">#初始化本地项目仓库</span></span><br><span class="line">git add .   <span class="comment">#向git仓库添加文件</span></span><br><span class="line">git commit -m <span class="string">"推送项目代码"</span>    <span class="comment">#本地仓库提交</span></span><br><span class="line">git remote add origin https://github.com/xxx.git    <span class="comment">#绑定或创建远程github仓库</span></span><br><span class="line">git push origin master  <span class="comment">#向远程仓库master分支推送代码</span></span><br></pre></td></tr></table></figure>
 <p>现在我们已经把我们的项目代码推送到了 master 分支上了</p>
@@ -57,7 +62,10 @@
 <img src="/2020/03/05/hexo-learn/%E9%80%89%E6%8B%A9github.png" class>
 <p>然后选择要部署的项目仓库和分支</p>
 <img src="/2020/03/05/hexo-learn/%E9%80%89%E6%8B%A9%E8%A6%81%E9%83%A8%E7%BD%B2%E7%9A%84%E4%BB%93%E5%BA%93%E5%92%8C%E5%88%86%E6%94%AF.png" class>
-<p>之后点 <code>Deploy site</code> 按钮提交部署<br>如果自己有域名，下一步还可以进行域名绑定，申请https，部署成功后会自动进行cdn加速的。<br>netlify生成的网址，字符很长，自己可以修改site的名称<br></p>]]></content>
+<p>之后点 <code>Deploy site</code> 按钮提交部署<br>如果自己有域名，下一步还可以进行域名绑定，申请https，部署成功后会自动进行cdn加速的。<br>netlify生成的网址，字符很长，自己可以修改site的名称</p>
+<img src="/2020/03/05/hexo-learn/%E4%BF%AE%E6%94%B9site%E7%9A%84%E5%90%8D%E7%A7%B0.png" class>
+<p>全部完成，以后就不需要这么麻烦了。只需要执行 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code> 即可自动化部署，然后要记得将我们的项目文件 push 到 github 的 master分支上去。</p>
+]]></content>
       <categories>
         <category>工具</category>
       </categories>
@@ -71,9 +79,9 @@
     <title>家乡的晚霞</title>
     <url>/2020/02/23/img-test.html</url>
     <content><![CDATA[<p><strong>The scenery of my hometown</strong></p>
-<img src="/2020/02/23/img-test/HomeTown_scenery.jpg" class title="老家">
+<img src="/2020/02/23/img-test/HomeTown_scenery.jpg" class>
 
-<img src="/2020/02/23/img-test/HomeTown_scenery_2.jpg" class title="新家">
+<img src="/2020/02/23/img-test/HomeTown_scenery_2.jpg" class>
 
 <p><strong><em>These photos were taken by wyx</em></strong></p>
 ]]></content>
