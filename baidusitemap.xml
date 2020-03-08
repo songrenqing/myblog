@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sxt.netlify.com/2020/03/08/hexo-features-bugs.html</loc>
+    <lastmod>2020-03-08</lastmod>
+  </url>  <url>
     <loc>https://sxt.netlify.com/2020/03/06/sublime-python.html</loc>
-    <lastmod>2020-03-07</lastmod>
+    <lastmod>2020-03-08</lastmod>
   </url>  <url>
     <loc>https://sxt.netlify.com/2020/03/05/hexo-learn.html</loc>
     <lastmod>2020-03-06</lastmod>

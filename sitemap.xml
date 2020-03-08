@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sxt.netlify.com/2020/03/08/hexo-features-bugs.html</loc>
+    
+    <lastmod>2020-03-08T12:01:15.175Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sxt.netlify.com/2020/03/06/sublime-python.html</loc>
     
-    <lastmod>2020-03-07T06:44:02.058Z</lastmod>
+    <lastmod>2020-03-08T11:58:26.669Z</lastmod>
     
   </url>
   
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://sxt.netlify.com/tags/index.html</loc>
+    <loc>https://sxt.netlify.com/categories/index.html</loc>
     
     <lastmod>2018-08-26T17:50:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://sxt.netlify.com/categories/index.html</loc>
+    <loc>https://sxt.netlify.com/tags/index.html</loc>
     
     <lastmod>2018-08-26T17:50:20.000Z</lastmod>
     
