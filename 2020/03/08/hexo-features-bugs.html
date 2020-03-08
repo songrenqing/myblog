@@ -94,16 +94,16 @@
 
 
 
-<meta name="description" content="在博客中新增加一些功能，比如百度统计、阅读次数、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。">
+<meta name="description" content="在博客中新增加一些功能，比如百度统计、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客上增加一些新的功能">
 <meta property="og:url" content="https://sxt.netlify.com/2020/03/08/hexo-features-bugs.html">
 <meta property="og:site_name" content="Srq的博客">
-<meta property="og:description" content="在博客中新增加一些功能，比如百度统计、阅读次数、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。">
+<meta property="og:description" content="在博客中新增加一些功能，比如百度统计、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。">
 <meta property="og:image" content="https://sxt.netlify.com/2020/03/08/hexo-features-bugs/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1.jpg">
 <meta property="og:image" content="https://sxt.netlify.com/2020/03/08/hexo-features-bugs/%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96.jpg">
 <meta property="article:published_time" content="2020-03-08T02:37:30.000Z">
-<meta property="article:modified_time" content="2020-03-08T04:03:43.025Z">
+<meta property="article:modified_time" content="2020-03-08T04:26:40.524Z">
 <meta property="article:author" content="srq">
 <meta property="article:tag" content="NexT">
 <meta property="article:tag" content="Bug">
@@ -416,12 +416,17 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
           
               <div class="post-description">
-                  在博客中新增加一些功能，比如百度统计、阅读次数、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。
+                  在博客中新增加一些功能，比如百度统计、访问人数等；修复了一个bug，边栏头像下面的日志链接错误。
               </div>
           
 
@@ -445,6 +450,15 @@
 <li>管理-代码管理-代码获取，复制代码ID<img src="/2020/03/08/hexo-features-bugs/%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96.jpg" class title="[代码获取后台]"></li>
 <li>ID复制到config.yml文件中的baidu_analytics后面，重新发布，大概20分钟左右就可以看到网站的访问数据。</li>
 </ol>
+<h2 id="busuanzi显示访问人数"><a href="#busuanzi显示访问人数" class="headerlink" title="busuanzi显示访问人数"></a>busuanzi显示访问人数</h2><p>找到busuanzi-counter的源文件</p>
+<blockquote>
+<p>/themes/next/layout/_third-party/analytics/busuanzi-counter.swig</p>
+</blockquote>
+<p>将原代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script async src&#x3D;&quot;https:&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script async src&#x3D;&quot;https:&#x2F;&#x2F;busuanzi.ibruce.info&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>然后将_config.yml中的busuanzi_count的enable改为true</p>
 <h1 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h1><h2 id="边栏头像下面的日志链接错误"><a href="#边栏头像下面的日志链接错误" class="headerlink" title="边栏头像下面的日志链接错误"></a>边栏头像下面的日志链接错误</h2><p>找到边栏的配置文件</p>
 <blockquote>
 <p>/themes/next/layout/_macro/sidebar.swig</p>
@@ -453,7 +467,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>修改为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -692,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#新的功能"><span class="nav-number">1.</span> <span class="nav-text">新的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度统计"><span class="nav-number">1.1.</span> <span class="nav-text">百度统计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bug"><span class="nav-number">2.</span> <span class="nav-text">Bug</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#边栏头像下面的日志链接错误"><span class="nav-number">2.1.</span> <span class="nav-text">边栏头像下面的日志链接错误</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#新的功能"><span class="nav-number">1.</span> <span class="nav-text">新的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#百度统计"><span class="nav-number">1.1.</span> <span class="nav-text">百度统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#busuanzi显示访问人数"><span class="nav-number">1.2.</span> <span class="nav-text">busuanzi显示访问人数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bug"><span class="nav-number">2.</span> <span class="nav-text">Bug</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#边栏头像下面的日志链接错误"><span class="nav-number">2.1.</span> <span class="nav-text">边栏头像下面的日志链接错误</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -729,6 +742,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 

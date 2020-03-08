@@ -10,6 +10,15 @@
 <li>管理-代码管理-代码获取，复制代码ID<img src="/2020/03/08/hexo-features-bugs/%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96.jpg" class title="[代码获取后台]"></li>
 <li>ID复制到config.yml文件中的baidu_analytics后面，重新发布，大概20分钟左右就可以看到网站的访问数据。</li>
 </ol>
+<h2 id="busuanzi显示访问人数"><a href="#busuanzi显示访问人数" class="headerlink" title="busuanzi显示访问人数"></a>busuanzi显示访问人数</h2><p>找到busuanzi-counter的源文件</p>
+<blockquote>
+<p>/themes/next/layout/_third-party/analytics/busuanzi-counter.swig</p>
+</blockquote>
+<p>将原代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script async src&#x3D;&quot;https:&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script async src&#x3D;&quot;https:&#x2F;&#x2F;busuanzi.ibruce.info&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>然后将_config.yml中的busuanzi_count的enable改为true</p>
 <h1 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h1><h2 id="边栏头像下面的日志链接错误"><a href="#边栏头像下面的日志链接错误" class="headerlink" title="边栏头像下面的日志链接错误"></a>边栏头像下面的日志链接错误</h2><p>找到边栏的配置文件</p>
 <blockquote>
 <p>/themes/next/layout/_macro/sidebar.swig</p>
@@ -17,8 +26,7 @@
 <p>将原代码</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>修改为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>工具</category>
       </categories>
