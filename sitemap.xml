@@ -4,7 +4,14 @@
   <url>
     <loc>https://sxt.netlify.com/2020/03/08/hexo-features-bugs.html</loc>
     
-    <lastmod>2020-03-12T11:34:23.345Z</lastmod>
+    <lastmod>2020-03-12T12:36:38.827Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://sxt.netlify.com/guestbook/index.html</loc>
+    
+    <lastmod>2020-03-12T12:09:33.112Z</lastmod>
     
   </url>
   
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://sxt.netlify.com/categories/index.html</loc>
+    <loc>https://sxt.netlify.com/tags/index.html</loc>
     
     <lastmod>2018-08-26T17:50:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://sxt.netlify.com/tags/index.html</loc>
+    <loc>https://sxt.netlify.com/categories/index.html</loc>
     
     <lastmod>2018-08-26T17:50:20.000Z</lastmod>
     
